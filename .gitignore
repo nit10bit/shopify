@@ -14,6 +14,7 @@ templates/*.json
 # Build
 assets/
 dist/
+*.timestamp-*
 
 # OS
 .DS_Store
