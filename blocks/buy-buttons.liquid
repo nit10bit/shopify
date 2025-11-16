@@ -129,6 +129,15 @@
             </span>
           {%- endunless -%}
 
+          {%- liquid
+            if can_add_to_cart
+              assign variant_price = product.selected_or_first_available_variant.price | money
+              assign add_to_cart_text = add_to_cart_text | append: ' - ' | append: variant_price
+            else
+              assign add_to_cart_text = add_to_cart_text
+            endif
+          -%}
+
           {% content_for 'block',
             type: 'add-to-cart',
             id: 'add-to-cart',

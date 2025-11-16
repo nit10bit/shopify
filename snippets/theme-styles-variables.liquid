@@ -1,4 +1,12 @@
 {% style %}
+  @font-face {
+    font-family: 'MatterTRIAL'; 
+    src: url({{ 'MatterTRIAL-Regular.woff2' | asset_url }}) format('woff2');
+    font-weight: 400; 
+    font-style: normal;
+    font-display: swap; 
+  }
+
   {%- liquid
     assign primary_font_bold = settings.type_body_font | font_modify: 'weight', 'bold'
     assign primary_font_italic = settings.type_body_font | font_modify: 'style', 'italic'
@@ -51,7 +59,7 @@
 
   :root {
     /* Page Layout */
-    --sidebar-width: 25rem;
+    --sidebar-width: 30rem;
     --narrow-content-width: 36rem;
     --normal-content-width: 42rem;
     --wide-content-width: 46rem;
@@ -81,16 +89,16 @@
     --letter-spacing-md: 0.13em;
 
     /* Font families */
-    --font-body--family: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
+    --font-body--family: MatterTRIAL, {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
     --font-body--style: {{ settings.type_body_font.style }};
     --font-body--weight: {{ settings.type_body_font.weight }};
-    --font-subheading--family: {{ settings.type_subheading_font.family }}, {{ settings.type_subheading_font.fallback_families }};
+    --font-subheading--family: MatterTRIAL, {{ settings.type_subheading_font.family }}, {{ settings.type_subheading_font.fallback_families }};
     --font-subheading--style: {{ settings.type_subheading_font.style }};
     --font-subheading--weight: {{ settings.type_subheading_font.weight }};
     --font-heading--family: {{ settings.type_heading_font.family }}, {{ settings.type_heading_font.fallback_families }};
     --font-heading--style: {{ settings.type_heading_font.style }};
     --font-heading--weight: {{ settings.type_heading_font.weight }};
-    --font-accent--family: {{ settings.type_accent_font.family }}, {{ settings.type_accent_font.fallback_families }};
+    --font-accent--family: MatterTRIAL, {{ settings.type_accent_font.family }}, {{ settings.type_accent_font.fallback_families }};
     --font-accent--style: {{ settings.type_accent_font.style }};
     --font-accent--weight: {{ settings.type_accent_font.weight }};
 

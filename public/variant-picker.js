@@ -158,6 +158,14 @@ export default class VariantPicker extends Component {
         }
       }
       target.checked = true;
+
+      const fullName = target.dataset.fullName;
+      const fieldset = target.closest('fieldset');
+      const selectedValueSpan = fieldset?.querySelector('.variant-option__selected-value');
+
+      if (selectedValueSpan && fullName) {
+        selectedValueSpan.textContent = fullName;
+      }
     }
 
     if (target instanceof HTMLSelectElement) {
@@ -295,6 +303,8 @@ export default class VariantPicker extends Component {
 
     morph(this, newVariantPickerSource);
 
+    this.autoSelectAvailableOption();
+
     return newProduct;
   }
 
@@ -358,6 +368,32 @@ export default class VariantPicker extends Component {
 
       return optionValueId;
     });
+  }
+
+  /**
+   * Checks and selects the first available variant
+   */
+  autoSelectAvailableOption() {
+    const fieldsets = /** @type {HTMLFieldSetElement[]} */ (this.refs.fieldsets || []);
+
+    for (const fieldset of fieldsets) {
+      const checkedInput = fieldset.querySelector('input:checked');
+      
+      if (!checkedInput) continue;
+
+      const isUnavailable = checkedInput.getAttribute('aria-disabled') === 'true';
+      
+      if (isUnavailable) {
+        const availableOption = Array.from(fieldset.querySelectorAll('input'))
+          .find((input) => input.getAttribute('aria-disabled') !== 'true');
+
+        if (availableOption) {
+          availableOption.click(); 
+
+          return;
+        }
+      }
+    }
   }
 }
 
