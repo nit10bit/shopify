@@ -1,0 +1,27 @@
+{
+  "name": "process-test",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently \"npm run vite:dev\" \"npm run shopify:dev\"",
+    "vite:dev": "vite build --watch --mode development",
+    "shopify:dev": "shopify theme dev --store=gabriel-process.myshopify.com",
+    "build": "vite build",
+    "build:push": "npm run build && shopify theme push --store=gabriel-process.myshopify.com",
+    "build:dev": "npm run build && npm run shopify:dev"
+  },
+  "devDependencies": {
+    "@shopify/cli": "^3.87.2",
+    "@shopify/theme": "^3.58.2",
+    "concurrently": "^8.2.2",
+    "vite": "^5.4.21"
+  },
+  "dependencies": {
+    "alpinejs": "^3.13.5"
+  },
+  "description": "",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
