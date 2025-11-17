@@ -37,11 +37,15 @@
   grid-template-columns: repeat(2, 1fr);
   gap: 16px;
 }
+
+[class*="text-block--"][class*="__complementary_products"] {
+  text-transform: uppercase;
+}
 {% endstylesheet %}
 
 {% schema %}
 {
-  "name": "Complementary Products",
+  "name": "t:names.complementary_products",
   "tag": "div",
   "settings": [
     {
@@ -49,10 +53,10 @@
       "content": "t:content.heading"
     },
     {
-      "type": "text",
+      "type": "inline_richtext",
       "id": "text",
       "label": "t:content.heading",
-      "default": "Complete the look"
+      "default": "t:content.explore_the_cuff_collection"
     },
     {
       "type": "select",

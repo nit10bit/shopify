@@ -112,7 +112,7 @@
               {% assign longest_value = product_option_value.size %}
             {% endif %}
             
-            <label class="variant-option__button-label{% if variant_style == 'swatch' or custom_display == 'swatch' or custom_display == 'image' %} variant-option__button-label--has-swatch{% endif %}">
+            <label class="variant-option__button-label{% if variant_style == 'swatch' or custom_display == 'swatch' or custom_display == 'image' %} variant-option__button-label--has-swatch{% endif %}{% if custom_display == 'image' %} variant-option__button-label--only-image{% endif %}">
               <input
                 type="radio"
                 name="{{ product_option.name | escape }}-{{ block.id }}-{{ product_resource.id }}"
@@ -541,7 +541,7 @@
   .variant-option__button-label--has-swatch {
     --focus-outline-radius: var(--variant-picker-swatch-radius);
 
-    width: 64px;
+    width: 62px;
     height: 80px;
     padding: 0;
     background-color: rgba(29, 15, 7, 0.02);
@@ -557,6 +557,17 @@
     transition: var(--animation-speed);
     font-size: 12px;
     letter-spacing: .2em;
+
+    &.variant-option__button-label--only-image {
+      width: 116px;
+      height: 154px;
+    }
+  }
+
+  .variant-option__image-full {
+    object-fit: cover;
+    height: 100%;
+    aspect-ratio: 2 / 3;
   }
 
   .variant-option__button-label:not(.variant-option__button-label--has-swatch):has(:checked) {

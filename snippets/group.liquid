@@ -11,6 +11,10 @@
   {% render 'group', children: children, settings: block.settings, shopify_attributes: block.shopify_attributes %}
 {%- enddoc -%}
 
+{% liquid
+  assign group_id = 'group-' | append: settings.id | default: ''
+%}
+
 <div
   class="
     group-block
@@ -20,14 +24,17 @@
     spacing-style
     size-style
     {% if settings.inherit_color_scheme == false %} color-{{ settings.color_scheme }}{% endif %}
+    {% if settings.visibility == 'desktop' %}desktop-only{% elsif settings.visibility == 'mobile' %}mobile-only{% endif %}
     {{ class }}
   "
   style="
     {% render 'border-override', settings: settings %}
     {% render 'spacing-style', settings: settings %}
     {% render 'size-style', settings: settings %}
+    {% if settings.mobile_order and settings.mobile_order != 'default' %}--mobile-order: {{ settings.mobile_order }};{% endif %}
     {{ style }}
   "
+  data-group-id="{{ group_id }}"
   {{ shopify_attributes }}
   data-testid="group-block"
 >
@@ -88,3 +95,13 @@
     pointer-events: auto;
   }
 {% endstylesheet %}
+
+<style>
+  {% if settings.mobile_order and settings.mobile_order != 'default' %}
+    @media (max-width: 749px) {
+      [data-group-id="{{ group_id }}"] {
+        order: {{ settings.mobile_order }};
+      }
+    }
+  {% endif %}
+</style>

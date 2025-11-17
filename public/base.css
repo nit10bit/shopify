@@ -1298,7 +1298,7 @@ button.shopify-payment-button__button--unbranded {
   border: none;
   font-family: var(--font-paragraph--family);
   font-style: var(--font-paragraph--style);
-  font-size: var(--font-paragraph--size);
+  font-size: calc(var(--font-paragraph--size) * .85);
   line-height: var(--font-paragraph--line-height);
   margin-block: 0;
   transition: color var(--animation-speed) var(--animation-easing),
@@ -3601,8 +3601,7 @@ slideshow-component[autoplay] slideshow-controls {
 }
 
 .slideshow-controls__counter {
-  color: var(--color-foreground);
-  background-color: rgb(0 0 0 / 40%);
+  color: var(--color-primary);
   width: auto;
   border-radius: 2rem;
   padding: 0.3rem var(--padding-sm);
@@ -3612,7 +3611,6 @@ slideshow-component[autoplay] slideshow-controls {
   font-size: var(--font-size--xs);
 
   .slash {
-    color: rgb(var(--color-foreground-rgb) / var(--opacity-40));
     padding-inline: var(--padding-2xs);
     margin-block-start: -0.1rem;
   }

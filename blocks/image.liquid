@@ -62,7 +62,10 @@
 
 {% if block_settings.link == blank %}
   <div
-    class="{{ class }}"
+    class="
+      {{ class }}
+      {% if block_settings.visibility == 'desktop' %}desktop-only{% elsif block_settings.visibility == 'mobile' %}mobile-only{% endif %}
+    "
     style="{{ style }}"
     {{ block.shopify_attributes }}
   >
@@ -71,7 +74,10 @@
 {% else %}
   <a
     href="{{ block_settings.link }}"
-    class="{{ class }}"
+    class="
+      {{ class }}
+      {% if section.settings.visibility == 'desktop' %}desktop-only{% elsif section.settings.visibility == 'mobile' %}mobile-only{% endif %}
+    "
     style="{{ style }}"
     {{ block.shopify_attributes }}
   >
@@ -114,6 +120,26 @@
   "name": "t:names.image",
   "tag": null,
   "settings": [
+    {
+      "type": "select",
+      "id": "visibility",
+      "label": "Visibility",
+      "options": [
+        {
+          "value": "default",
+          "label": "Default"
+        },
+        {
+          "value": "desktop",
+          "label": "Only Desktop"
+        },
+        {
+          "value": "mobile",
+          "label": "Only Mobile"
+        }
+      ],
+      "default": "default"
+    },
     {
       "type": "image_picker",
       "id": "image",

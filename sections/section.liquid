@@ -27,6 +27,30 @@
   "settings": [
     {
       "type": "header",
+      "content": "Visibility"
+    },
+    {
+      "type": "select",
+      "id": "visibility",
+      "label": "Visibility",
+      "options": [
+        {
+          "value": "default",
+          "label": "Default"
+        },
+        {
+          "value": "desktop",
+          "label": "Desktop only"
+        },
+        {
+          "value": "mobile",
+          "label": "Mobile only"
+        }
+      ],
+      "default": "default"
+    },
+    {
+      "type": "header",
       "content": "t:content.layout"
     },
     {
@@ -418,6 +442,15 @@
       "step": 1,
       "unit": "px",
       "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Customisation"
+    },
+    {
+      "type": "text",
+      "id": "custom_class",
+      "label": "Custom CSS Class"
     }
   ],
   "presets": [
@@ -1596,7 +1629,7 @@
                 "text": "<p>We're always on your side: keeping our loyal customers happy is our top priority and number one goal.</p>",
                 "width": "100%",
                 "max_width": "normal",
-                "alignment": "center",
+                "alignment": "left",
                 "type_preset": "rte",
                 "font": "var(--font-body--family)",
                 "font_size": "1rem",
@@ -1633,6 +1666,258 @@
         "border_width": 1,
         "border_opacity": 100,
         "border_radius": 0,
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    },
+    {
+      "name": "Featured Content",
+      "category": "t:categories.storytelling",
+      "blocks": {
+        "group_1": {
+          "type": "group",
+          "name": "Left column",
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "flex-start",
+            "gap": 28,
+            "width": "custom",
+            "custom_width": 60
+          },
+          "blocks": {
+            "subheading": {
+              "type": "text",
+              "settings": {
+                "text": "<p>BEHIND THE RING</p>",
+                "width": "fit-content",
+                "alignment": "left",
+                "type_preset": "h4"
+              }
+            },
+            "heading": {
+              "type": "text",
+              "settings": {
+                "text": "<h2>Timeless Elegance</h2>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "h3"
+              }
+            },
+            "wide_image": {
+              "type": "image",
+              "settings": {
+                "image_ratio": "landscape",
+                "width": "fill",
+                "padding-block-start": 44,
+                "visibility": "desktop"
+              }
+            }
+          },
+          "block_order": ["subheading", "heading", "wide_image"]
+        },
+        "group_mobile_images": {
+          "type": "group",
+          "name": "Mobile images",
+          "settings": {
+            "content_direction": "row",
+            "vertical_on_mobile": false,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "flex-start",
+            "gap": 16,
+            "width": "fill",
+            "width_mobile": "fill",
+            "visibility": "mobile"
+          },
+          "blocks": {
+            "left_image": {
+              "type": "image",
+              "settings": {
+                "image_ratio": "portrait",
+                "width": "fill",
+                "width_mobile": "fill"
+              }
+            },
+            "right_image": {
+              "type": "image",
+              "settings": {
+                "image_ratio": "portrait",
+                "width": "fill",
+                "width_mobile": "fill",
+                "padding-block-start": 24
+              }
+            }
+          },
+          "block_order": ["left_image", "right_image"]
+        },
+        "group_2": {
+          "type": "group",
+          "name": "Right column",
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment_flex_direction_column": "center",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 16,
+            "width": "custom",
+            "custom_width": 25
+          },
+          "blocks": {
+            "vertical_image": {
+              "type": "image",
+              "settings": {
+                "image_ratio": "portrait",
+                "width": "fill"
+              }
+            },
+            "text": {
+              "type": "text",
+              "settings": {
+                "text": "<p>Our most coveted engagement ring silhouette. The Ceremonial Solitaire showcases a dazzling oval diamond in a minimal basket setting.</p>",
+                "width": "100%",
+                "max_width": "narrow",
+                "alignment": "center"
+              }
+            }
+          },
+          "block_order": ["vertical_image", "text"]
+        }
+      },
+      "block_order": ["group_1", "group_mobile_images", "group_2"],
+      "settings": {
+        "content_direction": "row",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "space-between",
+        "vertical_alignment": "flex-start",
+        "horizontal_alignment_flex_direction_column": "space-between",
+        "gap": 32,
+        "section_width": "page-width",
+        "padding-block-start": 48,
+        "padding-block-end": 48,
+        "custom_class": "featured-content"
+      }
+    },
+    {
+      "name": "Featured Content - Style 2",
+      "category": "t:categories.storytelling",
+      "blocks": {
+        "left_column": {
+          "type": "group",
+          "name": "Left column",
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment_flex_direction_column": "flex-end",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 16,
+            "width": "custom",
+            "custom_width": 40,
+            "height": "fill"
+          },
+          "blocks": {
+            "group_1": {
+              "type": "group",
+              "settings": {
+                "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "flex-start",
+                "gap": 16,
+                "width": "fill"
+              },
+              "blocks": {
+                "subheading": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>CUSTOMISE</p>",
+                    "width": "100%",
+                    "alignment": "left",
+                    "type_preset": "h4"
+                  }
+                },
+                "heading": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<h2>Add your personal touch</h2>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "h3"
+                  }
+                },
+              },
+              "block_order": ["subheading", "heading"]
+            },
+            "group_2": {
+              "type": "group",
+              "settings": {
+                "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "center",
+                "horizontal_alignment": "flex-end",
+                "gap": 16,
+                "width": "custom",
+                "custom_width": 60,
+                "padding-block-start": 48
+              },
+              "blocks": {
+                "text": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Create your dream engagement ring with our Bespoke Ring Builder. Tailor each element to suit your personal preferences.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left"
+                  }
+                },
+                "button": {
+                  "type": "button",
+                  "settings": {
+                    "label": "CUSTOMISE",
+                    "link": ""
+                  }
+                }
+              },
+              "block_order": ["text", "button"]
+            }
+          },
+          "block_order": ["group_1", "group_2"]
+        },
+        "right_column": {
+          "type": "group",
+          "name": "Right column",
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment_flex_direction_column": "center",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 0,
+            "width": "custom",
+            "custom_width": 40
+          },
+          "blocks": {
+            "vertical_image": {
+              "type": "image",
+              "settings": {
+                "image_ratio": "portrait",
+                "width": "fill"
+              }
+            }
+          },
+          "block_order": ["vertical_image"]
+        }
+      },
+      "block_order": ["left_column", "right_column"],
+      "settings": {
+        "content_direction": "row",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "space-between",
+        "vertical_alignment": "center",
+        "gap": 32,
+        "section_width": "page-width",
         "padding-block-start": 48,
         "padding-block-end": 48
       }

@@ -7,7 +7,12 @@
 
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
 <div
-  class="section section--{{ section.settings.section_width }} color-{{ section.settings.color_scheme }}"
+  class="
+    section section--{{ section.settings.section_width }}
+    color-{{ section.settings.color_scheme }}
+    {% if section.settings.visibility == 'desktop' %}desktop-only{% elsif section.settings.visibility == 'mobile' %}mobile-only{% endif %}
+    {% if section.settings.custom_class != blank %}{{ section.settings.custom_class }}{% endif %}
+  "
   data-testid="ui-test-section"
 
   {% if request.visual_preview_mode %}
@@ -93,5 +98,19 @@
 
   .custom-section-content {
     z-index: var(--layer-flat);
+  }
+
+  .desktop-only {
+    display: none;
+  }
+
+  @media (min-width: 750px) {
+    .desktop-only {
+      display: flex;
+    }
+    
+    .mobile-only {
+      display: none !important;
+    }
   }
 {% endstylesheet %}
