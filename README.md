@@ -11,10 +11,22 @@
 
 ### Variant Metafields
 - **Short Name** (variant-level): Provides custom short names for variant swatches display
+  - **Namespace and key**: `custom.short_name`
+  - **Type**: Single line text
+- **Made to Order** (variant-level): Mark variants as made-to-order items
+  - **Namespace and key**: `custom.made_to_order`
+  - **Type**: Boolean (True/False)
+- **Delivery Date** (variant-level): Estimated delivery date for made-to-order variants
+  - **Namespace and key**: `custom.delivery_date`
+  - **Type**: Date
 
 ### Product Metafields
 - **Variant Display Options** (product-level): Configure custom swatch display styles by entering the option name and selecting the visualisation style
+  - **Namespace and key**: `custom.variant_display_options`
+  - **Type**: List of Metaobjects
 - **Complementary Products** (product-level): Select related products to display in the complementary products section
+  - **Namespace and key**: `custom.complementary_products`
+  - **Type**: List of Product References
 
 ## Challenges Faced
 

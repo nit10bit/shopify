@@ -65,6 +65,7 @@
     "edit_variants_in_theme_settings": "Edit variant styling in [theme settings](/editor?context=theme&category=variants)",
     "email_signups_create_customer_profiles": "Signups add [customer profiles](https://help.shopify.com/manual/customers)",
     "email_signup": "Email signup",
+    "explore_the_cuff_collection": "Explore the cuff collection",
     "follow_on_shop_eligiblity": "For the button to show, the Shop channel must be installed and Shop Pay activated. [Learn more](https://help.shopify.com/en/manual/online-store/themes/customizing-themes/add-shop-buttons)",
     "gift_card_form_description": "Customers can send gift cards to a recipient's email with a personal message. [Learn more](https://help.shopify.com/manual/products/gift-card-products)",
     "fonts": "Fonts",
@@ -269,6 +270,7 @@
     "collections_editorial": "Collection list: Editorial",
     "collections_grid": "Collection list: Grid",
     "colors": "Colors",
+    "complementary_products": "Complementary Products",
     "contact_form": "Contact form",
     // Name for layout container block in theme editor
     "content": "Content",
