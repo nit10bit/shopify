@@ -6,20 +6,20 @@
   assign delivery_date = current_variant.metafields.custom.delivery_date
 -%}
 
-<delivery-date-block
-  data-prefix="{{ block_settings.prefix_text }}"
-  data-visible="{{ is_made_to_order }}"
-  data-date="{{ delivery_date }}"
->
-  <div 
-    class="delivery-date spacing-style" 
-    style="{% render 'spacing-style', settings: block_settings %}"
-    {{ block.shopify_attributes }}
+{% if is_made_to_order and delivery_date %}
+  <delivery-date-block
+    data-prefix="{{ block_settings.prefix_text }}"
+    data-visible="true"
+    data-date="{{ delivery_date }}"
   >
-    <div class="delivery-date__content">
-      <span class="delivery-date__prefix">{{ block_settings.prefix_text }}</span>
-      <span class="delivery-date__date">
-        {%- if delivery_date -%}
+    <div 
+      class="delivery-date spacing-style" 
+      style="{% render 'spacing-style', settings: block_settings %}"
+      {{ block.shopify_attributes }}
+    >
+      <div class="delivery-date__content">
+        <span class="delivery-date__prefix">{{ block_settings.prefix_text }}</span>
+        <span class="delivery-date__date">
           {%- liquid
             assign day = delivery_date | date: "%d" | plus: 0
             assign suffix = "th"
@@ -32,13 +32,31 @@
             endif
           -%}
           {{ day }}{{ suffix }} of {{ delivery_date | date: "%B %Y" }}
-        {%- endif -%}
-      </span>
+        </span>
+      </div>
     </div>
-  </div>
-</delivery-date-block>
+  </delivery-date-block>
+{% else %}
+  <delivery-date-block
+    data-prefix="{{ block_settings.prefix_text }}"
+    data-visible="false"
+    data-date="{{ delivery_date }}"
+    style="display: none;"
+  >
+    <div 
+      class="delivery-date spacing-style" 
+      style="{% render 'spacing-style', settings: block_settings %}"
+      {{ block.shopify_attributes }}
+    >
+      <div class="delivery-date__content">
+        <span class="delivery-date__prefix">{{ block_settings.prefix_text }}</span>
+        <span class="delivery-date__date"></span>
+      </div>
+    </div>
+  </delivery-date-block>
+{% endif %}
 
-{% stylesheet %}
+<style>
 .delivery-date {
   width: 100%;
 }
@@ -56,7 +74,7 @@ delivery-date-block[data-visible="false"] {
   margin-right: 0.1rem;
   color: #A6A6A3;
 }
-{% endstylesheet %}
+</style>
 
 {% javascript %}
 class DeliveryDateBlock extends HTMLElement {
@@ -79,10 +97,12 @@ class DeliveryDateBlock extends HTMLElement {
       const isMadeToOrder = variantMeta.made_to_order === true;
       const deliveryDate = variantMeta.delivery_date;
 
-      this.dataset.visible = isMadeToOrder && deliveryDate ? 'true' : 'false';
+      const shouldShow = isMadeToOrder && deliveryDate;
+      this.dataset.visible = shouldShow ? 'true' : 'false';
+      this.style.display = shouldShow ? '' : 'none';
       this.dataset.date = deliveryDate || '';
 
-      if (isMadeToOrder && deliveryDate && this.dateOutput) {
+      if (shouldShow && this.dateOutput) {
         this.dateOutput.textContent = this.formatDate(deliveryDate);
       }
     });

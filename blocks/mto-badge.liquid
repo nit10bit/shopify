@@ -5,15 +5,27 @@
   assign is_made_to_order = current_variant.metafields.custom.made_to_order
 -%}
 
-<made-to-order-badge data-visible="{{ is_made_to_order }}">
-  <div 
-    class="made-to-order-badge spacing-style" 
-    style="{% render 'spacing-style', settings: block_settings %}" 
-    {{ block.shopify_attributes }}
-  >
-    {% render 'text', block: block %}
-  </div>
-</made-to-order-badge>
+{% if is_made_to_order %}
+  <made-to-order-badge data-visible="true">
+    <div 
+      class="made-to-order-badge spacing-style" 
+      style="{% render 'spacing-style', settings: block_settings %}" 
+      {{ block.shopify_attributes }}
+    >
+      {% render 'text', block: block %}
+    </div>
+  </made-to-order-badge>
+{% else %}
+  <made-to-order-badge data-visible="false" style="display: none;">
+    <div 
+      class="made-to-order-badge spacing-style" 
+      style="{% render 'spacing-style', settings: block_settings %}" 
+      {{ block.shopify_attributes }}
+    >
+      {% render 'text', block: block %}
+    </div>
+  </made-to-order-badge>
+{% endif %}
 
 <style>
 .made-to-order-badge {
@@ -24,7 +36,7 @@ made-to-order-badge[data-visible="false"] {
   display: none;
 }
 
-made-to-order-badge .made-to-order-badge .text-block {
+[class*="text-block--"][class*="__made_to_order_badge"] {
   text-transform: uppercase;
 }
 </style>
@@ -45,7 +57,9 @@ class MadeToOrderBadge extends HTMLElement {
       const variantMeta = window.productVariantMetafields[variantId];
       if (!variantMeta) return;
 
-      this.dataset.visible = variantMeta.made_to_order === true;
+      const isMadeToOrder = variantMeta.made_to_order === true;
+      this.dataset.visible = isMadeToOrder;
+      this.style.display = isMadeToOrder ? '' : 'none';
     });
   }
 }
